@@ -93,6 +93,84 @@ ___WEB_PERMISSIONS___
                     "boolean": false
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "gtag"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "obApi.queue"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
               }
             ]
           }
@@ -137,21 +215,26 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 const injectScript = require('injectScript');
 const setInWindow = require('setInWindow');
+const createArgumentsQueue = require('createArgumentsQueue');
 
 const url = 'https://amplify.outbrain.com/cp/obtp.js';
-
-const api = function() {
-  api.queue.push(arguments);
+let gtag;
+const api = function () {
+	gtag(arguments[0], arguments[1], arguments[2]);
 };
+
 api.version = '1.0-gtm';
 api.loaded = true;
 api.marketerId = [data.MarketerId];
-api.queue = [['track', 'PAGE_VIEW']];
+
 setInWindow('obApi', api, true);
-injectScript(url);
-data.gtmOnSuccess();
+gtag = createArgumentsQueue('gtag', 'obApi.queue');
+api('track', 'PAGE_VIEW');
+
+injectScript(url, data.gtmOnSuccess, data.gtmOnFailure);
 
 
 ___NOTES___
 
 Created on 8/13/2019, 8:10:13 AM
+
