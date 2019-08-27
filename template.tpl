@@ -218,19 +218,20 @@ const setInWindow = require('setInWindow');
 const createArgumentsQueue = require('createArgumentsQueue');
 
 const url = 'https://amplify.outbrain.com/cp/obtp.js';
-
-const api = {
-	version: '1.0-gtm',
-	loaded: true,
-	marketerId: [data.MarketerId]
+let gtag;
+const api = function () {
+	gtag(arguments[0], arguments[1], arguments[2]);
 };
 
-setInWindow('obApi', api, true);
-const gtag = createArgumentsQueue('gtag', 'obApi.queue');
-gtag('track', 'PAGE_VIEW');
+api.version = '1.0-gtm';
+api.loaded = true;
+api.marketerId = [data.MarketerId];
 
-injectScript(url);
-data.gtmOnSuccess();
+setInWindow('obApi', api, true);
+gtag = createArgumentsQueue('gtag', 'obApi.queue');
+api('track', 'PAGE_VIEW');
+
+injectScript(url, data.gtmOnSuccess, data.gtmOnFailure);
 
 
 ___NOTES___
