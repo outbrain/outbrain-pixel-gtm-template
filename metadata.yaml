@@ -1,0 +1,5 @@
+homepage: "www.outbrain.com",
+documentation: "https://www.outbrain.com/help/advertisers/multiple-conversions/",
+versions:
+  - sha: 7ef3e84368c32883ce0c7f94330b24691122da5b
+    changeNotes: Initial Version
