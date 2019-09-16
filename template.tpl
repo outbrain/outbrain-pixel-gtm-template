@@ -2,7 +2,7 @@
 
 {
   "displayName": "Outbrain Pixel",
-  "description": "Outbrain Pixel allows you to track Conversions and create Custom Audiences on your web site",
+  "description": "Outbrain Pixel allows you to track conversions and create Custom Audiences on your web site",
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
