@@ -35,7 +35,7 @@ ___TEMPLATE_PARAMETERS___
     "valueValidators": [
       {
         "args": [
-          "([0-9a-zA-Z]{10,50},)*[0-9a-zA-Z]{10,50}$"
+          "([0-9a-zA-Z]{10,50}, )*[0-9a-zA-Z]{10,50}$"
         ],
         "type": "REGEX"
       }
