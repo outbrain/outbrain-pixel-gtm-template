@@ -1,16 +1,8 @@
-___TERMS_OF_SERVICE___
-
-By creating or modifying this file you agree to Google Tag Manager's Community
-Template Gallery Developer Terms of Service available at
-https://developers.google.com/tag-manager/gallery-tos (or such other URL as
-Google may provide), as modified from time to time.
-
 ___INFO___
 
 {
   "displayName": "Outbrain Pixel",
   "description": "Outbrain Pixel allows you to track conversions and create Custom Audiences on your web site",
-  "categories": ["ATTRIBUTION", "REMARKETING"],
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
@@ -35,9 +27,10 @@ ___TEMPLATE_PARAMETERS___
     "valueValidators": [
       {
         "args": [
-          "([0-9a-zA-Z]{10,50},)*[0-9a-zA-Z]{10,50}$"
+          "([0-9a-zA-Z]{10,50}, )*[0-9a-zA-Z]{10,50}$"
         ],
-        "type": "REGEX"
+        "type": "REGEX",
+        "enablingConditions": []
       }
     ],
     "displayName": "Marketer Id (OB_ADV_ID)",
