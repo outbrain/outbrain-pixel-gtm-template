@@ -2,9 +2,11 @@ homepage: "www.outbrain.com",
 documentation: "https://www.outbrain.com/help/advertisers/multiple-conversions/",
 versions:
   # Latest version
+  - sha: 5e4076fc26ff315eca8901720eb6795fe024e2cd
+    changeNotes: allow multiple tags per page
+  # Older versions
   - sha: 635a5ec3552bfcb0ea6ec99ce92f99f6f865c1dc
     changeNotes: allow spaces when multiple marketer id's are entered 
-  # Older versions
   - sha: cfa78a42d9ff34fc0732719a9d5930579f61a978
     changeNotes: change gtag to obTag
   - sha: 80079d3fe5c435826363fb0156b16b988418c7a6
