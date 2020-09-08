@@ -53,22 +53,32 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const injectScript = require('injectScript');
 const setInWindow = require('setInWindow');
 const createArgumentsQueue = require('createArgumentsQueue');
+const copyFromWindow = require('copyFromWindow');
+const callInWindow = require('callInWindow');
 
-const url = 'https://amplify.outbrain.com/cp/obtp.js';
-let obTag;
-const api = function () {
-	obTag(arguments[0], arguments[1], arguments[2]);
-};
+//check if api already exists
+let api = copyFromWindow('obApi');
 
-api.version = '1.0-gtm';
-api.loaded = true;
-api.marketerId = data.MarketerId.split(',');
+if (!api) {
+  const url = 'https://amplify.outbrain.com/cp/obtp.js';
+  let obTag;
+  api = function () {
+   	obTag(arguments[0], arguments[1], arguments[2]);
+  };
 
-setInWindow('obApi', api, true);
-obTag = createArgumentsQueue('obTag', 'obApi.queue');
-api('track', 'PAGE_VIEW');
+  api.version = '1.0-gtm';
+  api.loaded = true;
+  api.marketerId = data.MarketerId.split(',');
 
-injectScript(url, data.gtmOnSuccess, data.gtmOnFailure);
+  setInWindow('obApi', api, true);
+  obTag = createArgumentsQueue('obTag', 'obApi.queue');
+  api('track', 'PAGE_VIEW');
+  injectScript(url, data.gtmOnSuccess, data.gtmOnFailure);
+} else {
+  data.MarketerId.split(',').forEach(function (marketerId) {
+      callInWindow('obApi.marketerId.push', marketerId);
+  });
+}
 
 
 ___WEB_PERMISSIONS___
@@ -241,6 +251,45 @@ ___WEB_PERMISSIONS___
                     "boolean": false
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "obApi.marketerId.push"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
               }
             ]
           }
@@ -289,3 +338,6 @@ scenarios: []
 ___NOTES___
 
 Created on 8/13/2019, 8:10:13 AM
+
+
+
