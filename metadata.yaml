@@ -2,9 +2,11 @@ homepage: "www.outbrain.com",
 documentation: "https://www.outbrain.com/help/advertisers/multiple-conversions/",
 versions:
   # Latest version
+  - sha: 3ec5ec308c5e2fce79bffb9226607b05e8f3f35d
+    changeNotes: avoid split marketerId use pixel api for that 
+  # Older versions
   - sha: 5e4076fc26ff315eca8901720eb6795fe024e2cd
     changeNotes: allow multiple tags per page
-  # Older versions
   - sha: 635a5ec3552bfcb0ea6ec99ce92f99f6f865c1dc
     changeNotes: allow spaces when multiple marketer id's are entered 
   - sha: cfa78a42d9ff34fc0732719a9d5930579f61a978
