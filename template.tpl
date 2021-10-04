@@ -37,7 +37,8 @@ ___TEMPLATE_PARAMETERS___
         "args": [
           "([0-9a-zA-Z]{10,50}, )*[0-9a-zA-Z]{10,50}$"
         ],
-        "type": "REGEX"
+        "type": "REGEX",
+        "enablingConditions": []
       }
     ],
     "displayName": "Marketer Id (OB_ADV_ID)",
@@ -68,16 +69,13 @@ if (!api) {
 
   api.version = '1.0-gtm';
   api.loaded = true;
-  api.marketerId = data.MarketerId.split(',');
-
+  api.marketerId = data.MarketerId;
   setInWindow('obApi', api, true);
   obTag = createArgumentsQueue('obTag', 'obApi.queue');
   api('track', 'PAGE_VIEW');
   injectScript(url, data.gtmOnSuccess, data.gtmOnFailure);
 } else {
-  data.MarketerId.split(',').forEach(function (marketerId) {
-      callInWindow('obApi.marketerId.push', marketerId);
-  });
+  callInWindow('obApi.addMarketer', data.MarketerId);
 }
 
 
@@ -338,6 +336,5 @@ scenarios: []
 ___NOTES___
 
 Created on 8/13/2019, 8:10:13 AM
-
 
 
