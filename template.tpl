@@ -74,8 +74,8 @@ ___TEMPLATE_PARAMETERS___
     "displayName": "Event Name",
     "selectItems": [
       {
-        "value": "Add to cart",
-        "displayValue": "Add to cart"
+        "value": "Custom",
+        "displayValue": "Custom event"
       },
       {
         "value": "Search",
@@ -114,8 +114,8 @@ ___TEMPLATE_PARAMETERS___
         "displayValue": "Lead"
       },
       {
-        "value": "Custom",
-        "displayValue": "Custom event"
+        "value": "Add to cart",
+        "displayValue": "Add to cart"
       }
     ],
     "simpleValueType": true,
@@ -136,7 +136,7 @@ ___TEMPLATE_PARAMETERS___
         "enablingConditions": [
           {
             "paramName": "EventName",
-            "paramValue": "custom",
+            "paramValue": "Custom",
             "type": "EQUALS"
           }
         ],
@@ -324,9 +324,7 @@ const setInWindow = require('setInWindow');
 const createArgumentsQueue = require('createArgumentsQueue');
 const copyFromWindow = require('copyFromWindow');
 const callInWindow = require('callInWindow');
-const log = require('logToConsole');
 
-log("data", data);
 
 const getEventName  = () => {
   if(data.pixelType === 'event_pixel') {
@@ -606,27 +604,6 @@ ___WEB_PERMISSIONS___
                 "string": "https://amplify.outbrain.com/*"
               }
             ]
-          }
-        }
-      ]
-    },
-    "clientAnnotations": {
-      "isEditedByUser": true
-    },
-    "isRequired": true
-  },
-  {
-    "instance": {
-      "key": {
-        "publicId": "logging",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "environments",
-          "value": {
-            "type": 1,
-            "string": "debug"
           }
         }
       ]
