@@ -5,12 +5,16 @@ Template Gallery Developer Terms of Service available at
 https://developers.google.com/tag-manager/gallery-tos (or such other URL as
 Google may provide), as modified from time to time.
 
+
 ___INFO___
 
 {
   "displayName": "Outbrain Pixel",
   "description": "Outbrain Pixel allows you to track conversions and create Custom Audiences on your web site",
-  "categories": ["ATTRIBUTION", "REMARKETING"],
+  "categories": [
+    "ATTRIBUTION",
+    "REMARKETING"
+  ],
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
@@ -45,6 +49,270 @@ ___TEMPLATE_PARAMETERS___
     "simpleValueType": true,
     "name": "MarketerId",
     "type": "TEXT"
+  },
+  {
+    "type": "RADIO",
+    "name": "pixelType",
+    "displayName": "",
+    "radioItems": [
+      {
+        "value": "page_view_pixel",
+        "displayValue": "Page View pixel",
+        "help": "Track a PAGE_VIEW event."
+      },
+      {
+        "value": "event_pixel",
+        "displayValue": "Event pixel",
+        "help": "Track a conversion event."
+      }
+    ],
+    "simpleValueType": true
+  },
+  {
+    "type": "SELECT",
+    "name": "EventName",
+    "displayName": "Event Name",
+    "selectItems": [
+      {
+        "value": "Add to cart",
+        "displayValue": "Add to cart"
+      },
+      {
+        "value": "Search",
+        "displayValue": "Search"
+      },
+      {
+        "value": "Purchase",
+        "displayValue": "Purchase"
+      },
+      {
+        "value": "Download",
+        "displayValue": "Download"
+      },
+      {
+        "value": "Content view",
+        "displayValue": "Content view"
+      },
+      {
+        "value": "Checkout",
+        "displayValue": "Checkout"
+      },
+      {
+        "value": "Registration",
+        "displayValue": "Registration"
+      },
+      {
+        "value": "Email sign up",
+        "displayValue": "Email sign up"
+      },
+      {
+        "value": "Video view",
+        "displayValue": "Video view"
+      },
+      {
+        "value": "Lead",
+        "displayValue": "Lead"
+      },
+      {
+        "value": "Custom",
+        "displayValue": "Custom event"
+      }
+    ],
+    "simpleValueType": true,
+    "alwaysInSummary": false,
+    "enablingConditions": [
+      {
+        "paramName": "pixelType",
+        "paramValue": "event_pixel",
+        "type": "EQUALS"
+      }
+    ],
+    "subParams": [
+      {
+        "type": "TEXT",
+        "name": "CustomEventName",
+        "displayName": "Custom Event Name",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "EventName",
+            "paramValue": "custom",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "REGEX",
+            "args": [
+              "^[a-zA-Z0-9_-]+$"
+            ]
+          },
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": "Define a custom event name."
+      }
+    ],
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      }
+    ]
+  },
+  {
+    "type": "GROUP",
+    "name": "CustomParameters",
+    "displayName": "Custom Parameters",
+    "groupStyle": "ZIPPY_OPEN",
+    "subParams": [
+      {
+        "type": "CHECKBOX",
+        "name": "addCurrency",
+        "checkboxText": "Currency",
+        "simpleValueType": true,
+        "subParams": [
+          {
+            "type": "SELECT",
+            "name": "CurrencyValue",
+            "selectItems": [
+              {
+                "value": "USD",
+                "displayValue": "USD"
+              },
+              {
+                "value": "CAD",
+                "displayValue": "CAD"
+              },
+              {
+                "value": "EUR",
+                "displayValue": "EUR"
+              },
+              {
+                "value": "GBP",
+                "displayValue": "GBP"
+              },
+              {
+                "value": "ILS",
+                "displayValue": "ILS"
+              },
+              {
+                "value": "AUD",
+                "displayValue": "AUD"
+              },
+              {
+                "value": "MXN",
+                "displayValue": "MXN"
+              },
+              {
+                "value": "BRL",
+                "displayValue": "BRL"
+              },
+              {
+                "value": "SEK",
+                "displayValue": "SEK"
+              },
+              {
+                "value": "SGD",
+                "displayValue": "SGD"
+              },
+              {
+                "value": "RUB",
+                "displayValue": "RUB"
+              },
+              {
+                "value": "NZD",
+                "displayValue": "NZD"
+              },
+              {
+                "value": "INR",
+                "displayValue": "INR"
+              },
+              {
+                "value": "JPY",
+                "displayValue": "JPY"
+              },
+              {
+                "value": "PHP",
+                "displayValue": "PHP"
+              },
+              {
+                "value": "CHF",
+                "displayValue": "CHF"
+              },
+              {
+                "value": "MYR",
+                "displayValue": "MYR"
+              }
+            ],
+            "simpleValueType": true,
+            "enablingConditions": [
+              {
+                "paramName": "addCurrency",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ],
+            "valueValidators": [
+              {
+                "type": "NON_EMPTY"
+              }
+            ]
+          }
+        ],
+        "help": "Use the Currency parameter to define the currency for the value passed in the \"Order Value\" parameter."
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "addOrderID",
+        "checkboxText": "Order ID",
+        "simpleValueType": true,
+        "subParams": [
+          {
+            "type": "TEXT",
+            "name": "OrderID",
+            "simpleValueType": true,
+            "enablingConditions": [
+              {
+                "paramName": "addOrderID",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ]
+          }
+        ],
+        "help": "Use the Order ID parameter to pass the Order ID for this event."
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "addOrderValue",
+        "checkboxText": "Order Value",
+        "simpleValueType": true,
+        "subParams": [
+          {
+            "type": "TEXT",
+            "name": "OrderValue",
+            "simpleValueType": true,
+            "enablingConditions": [
+              {
+                "paramName": "addOrderValue",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ],
+            "valueValidators": [
+              {
+                "type": "REGEX",
+                "args": [
+                  "^\\s*(?\u003d.*[1-9])\\d*(?:\\.\\d{1,8})?\\s*$"
+                ]
+              }
+            ]
+          }
+        ],
+        "help": "Use the Order Value parameter to define the custom conversion value for this event."
+      }
+    ]
   }
 ]
 
@@ -56,23 +324,45 @@ const setInWindow = require('setInWindow');
 const createArgumentsQueue = require('createArgumentsQueue');
 const copyFromWindow = require('copyFromWindow');
 const callInWindow = require('callInWindow');
+const log = require('logToConsole');
 
+log("data", data);
+
+const getEventName  = () => {
+  if(data.pixelType === 'event_pixel') {
+    return data.EventName === 'custom' ? data.CustomEventName : data.EventName;
+  }
+  return 'PAGE_VIEW';
+};
+
+const getCustomParameters  = () => {
+  const params = {
+  };
+  if (data.OrderID) params.orderId = data.OrderID;
+  if (data.OrderValue) params.orderValue = data.OrderValue;
+  if (data.CurrencyValue) params.currency = data.CurrencyValue;
+  return params;
+};
+
+const id = data.MarketerId; 
+const eventName = getEventName(); 
+const params = getCustomParameters();
 //check if api already exists
 let api = copyFromWindow('obApi');
-
 if (!api) {
   const url = 'https://amplify.outbrain.com/cp/obtp.js';
   let obTag;
   api = function () {
    	obTag(arguments[0], arguments[1], arguments[2]);
   };
-
-  api.version = '1.0-gtm';
+  api.version = '2.0-gtm';
   api.loaded = true;
-  api.marketerId = data.MarketerId;
+  api.marketerId = id;
+  api.eventName = eventName;
+  api.params = params;
   setInWindow('obApi', api, true);
   obTag = createArgumentsQueue('obTag', 'obApi.queue');
-  api('track', 'PAGE_VIEW');
+  api('track', eventName, params);   
   injectScript(url, data.gtmOnSuccess, data.gtmOnFailure);
 } else {
   callInWindow('obApi.addMarketer', data.MarketerId);
@@ -316,6 +606,27 @@ ___WEB_PERMISSIONS___
                 "string": "https://amplify.outbrain.com/*"
               }
             ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "logging",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "environments",
+          "value": {
+            "type": 1,
+            "string": "debug"
           }
         }
       ]
