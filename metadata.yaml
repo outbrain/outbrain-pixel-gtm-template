@@ -2,9 +2,11 @@ homepage: "www.outbrain.com",
 documentation: "https://www.outbrain.com/help/advertisers/multiple-conversions/",
 versions:
   # Latest version
+  - sha: 64f3e6c332b770885fcde12accb9f2998f7fab56
+    changeNotes: add new parameters and event type
+  # Older versions
   - sha: 3ec5ec308c5e2fce79bffb9226607b05e8f3f35d
     changeNotes: avoid split marketerId use pixel api for that 
-  # Older versions
   - sha: 5e4076fc26ff315eca8901720eb6795fe024e2cd
     changeNotes: allow multiple tags per page
   - sha: 635a5ec3552bfcb0ea6ec99ce92f99f6f865c1dc
