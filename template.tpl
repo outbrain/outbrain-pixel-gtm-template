@@ -10,7 +10,10 @@ ___INFO___
 {
   "displayName": "Outbrain Pixel",
   "description": "Outbrain Pixel allows you to track conversions and create Custom Audiences on your web site",
-  "categories": ["ATTRIBUTION", "REMARKETING"],
+  "categories": [
+    "ATTRIBUTION",
+    "REMARKETING"
+  ],
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
@@ -45,6 +48,270 @@ ___TEMPLATE_PARAMETERS___
     "simpleValueType": true,
     "name": "MarketerId",
     "type": "TEXT"
+  },
+  {
+    "type": "RADIO",
+    "name": "pixelType",
+    "displayName": "",
+    "radioItems": [
+      {
+        "value": "page_view_pixel",
+        "displayValue": "Page View pixel",
+        "help": "Track a PAGE_VIEW event."
+      },
+      {
+        "value": "event_pixel",
+        "displayValue": "Event pixel",
+        "help": "Track a conversion event."
+      }
+    ],
+    "simpleValueType": true
+  },
+  {
+    "type": "SELECT",
+    "name": "EventName",
+    "displayName": "Event Name",
+    "selectItems": [
+      {
+        "value": "Custom",
+        "displayValue": "Custom event"
+      },
+      {
+        "value": "Search",
+        "displayValue": "Search"
+      },
+      {
+        "value": "Purchase",
+        "displayValue": "Purchase"
+      },
+      {
+        "value": "Download",
+        "displayValue": "Download"
+      },
+      {
+        "value": "Content view",
+        "displayValue": "Content view"
+      },
+      {
+        "value": "Checkout",
+        "displayValue": "Checkout"
+      },
+      {
+        "value": "Registration",
+        "displayValue": "Registration"
+      },
+      {
+        "value": "Email sign up",
+        "displayValue": "Email sign up"
+      },
+      {
+        "value": "Video view",
+        "displayValue": "Video view"
+      },
+      {
+        "value": "Lead",
+        "displayValue": "Lead"
+      },
+      {
+        "value": "Add to cart",
+        "displayValue": "Add to cart"
+      }
+    ],
+    "simpleValueType": true,
+    "alwaysInSummary": false,
+    "enablingConditions": [
+      {
+        "paramName": "pixelType",
+        "paramValue": "event_pixel",
+        "type": "EQUALS"
+      }
+    ],
+    "subParams": [
+      {
+        "type": "TEXT",
+        "name": "CustomEventName",
+        "displayName": "Custom Event Name",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "EventName",
+            "paramValue": "Custom",
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "REGEX",
+            "args": [
+              "^[a-zA-Z0-9_-]+$"
+            ]
+          },
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "help": "Define a custom event name."
+      }
+    ],
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      }
+    ]
+  },
+  {
+    "type": "GROUP",
+    "name": "CustomParameters",
+    "displayName": "Custom Parameters",
+    "groupStyle": "ZIPPY_OPEN",
+    "subParams": [
+      {
+        "type": "CHECKBOX",
+        "name": "addCurrency",
+        "checkboxText": "Currency",
+        "simpleValueType": true,
+        "subParams": [
+          {
+            "type": "SELECT",
+            "name": "CurrencyValue",
+            "selectItems": [
+              {
+                "value": "USD",
+                "displayValue": "USD"
+              },
+              {
+                "value": "CAD",
+                "displayValue": "CAD"
+              },
+              {
+                "value": "EUR",
+                "displayValue": "EUR"
+              },
+              {
+                "value": "GBP",
+                "displayValue": "GBP"
+              },
+              {
+                "value": "ILS",
+                "displayValue": "ILS"
+              },
+              {
+                "value": "AUD",
+                "displayValue": "AUD"
+              },
+              {
+                "value": "MXN",
+                "displayValue": "MXN"
+              },
+              {
+                "value": "BRL",
+                "displayValue": "BRL"
+              },
+              {
+                "value": "SEK",
+                "displayValue": "SEK"
+              },
+              {
+                "value": "SGD",
+                "displayValue": "SGD"
+              },
+              {
+                "value": "RUB",
+                "displayValue": "RUB"
+              },
+              {
+                "value": "NZD",
+                "displayValue": "NZD"
+              },
+              {
+                "value": "INR",
+                "displayValue": "INR"
+              },
+              {
+                "value": "JPY",
+                "displayValue": "JPY"
+              },
+              {
+                "value": "PHP",
+                "displayValue": "PHP"
+              },
+              {
+                "value": "CHF",
+                "displayValue": "CHF"
+              },
+              {
+                "value": "MYR",
+                "displayValue": "MYR"
+              }
+            ],
+            "simpleValueType": true,
+            "enablingConditions": [
+              {
+                "paramName": "addCurrency",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ],
+            "valueValidators": [
+              {
+                "type": "NON_EMPTY"
+              }
+            ]
+          }
+        ],
+        "help": "Use the Currency parameter to define the currency for the value passed in the \"Order Value\" parameter."
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "addOrderID",
+        "checkboxText": "Order ID",
+        "simpleValueType": true,
+        "subParams": [
+          {
+            "type": "TEXT",
+            "name": "OrderID",
+            "simpleValueType": true,
+            "enablingConditions": [
+              {
+                "paramName": "addOrderID",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ]
+          }
+        ],
+        "help": "Use the Order ID parameter to pass the Order ID for this event."
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "addOrderValue",
+        "checkboxText": "Order Value",
+        "simpleValueType": true,
+        "subParams": [
+          {
+            "type": "TEXT",
+            "name": "OrderValue",
+            "simpleValueType": true,
+            "enablingConditions": [
+              {
+                "paramName": "addOrderValue",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ],
+            "valueValidators": [
+              {
+                "type": "REGEX",
+                "args": [
+                  "^\\s*(?\u003d.*[1-9])\\d*(?:\\.\\d{1,8})?\\s*$"
+                ]
+              }
+            ]
+          }
+        ],
+        "help": "Use the Order Value parameter to define the custom conversion value for this event."
+      }
+    ]
   }
 ]
 
@@ -57,26 +324,60 @@ const createArgumentsQueue = require('createArgumentsQueue');
 const copyFromWindow = require('copyFromWindow');
 const callInWindow = require('callInWindow');
 
-//check if api already exists
-let api = copyFromWindow('obApi');
+const getEventName  = () => {
+  if(data.pixelType === 'event_pixel') {
+    return data.EventName === 'custom' ? data.CustomEventName : data.EventName;
+  }
+  return 'PAGE_VIEW';
+};
 
-if (!api) {
-  const url = 'https://amplify.outbrain.com/cp/obtp.js';
-  let obTag;
-  api = function () {
-   	obTag(arguments[0], arguments[1], arguments[2]);
+const getCustomParameters  = () => {
+  const params = {
   };
+  if (data.OrderID) params.orderId = data.OrderID;
+  if (data.OrderValue) params.orderValue = data.OrderValue;
+  if (data.CurrencyValue) params.currency = data.CurrencyValue;
+  return params;
+};
 
-  api.version = '1.0-gtm';
+const initApi = () => {
+  const api = function () {
+    const apiDispatch = copyFromWindow('obApi.dispatch');
+    if(apiDispatch) {
+      callInWindow('obApi.dispatch.apply', api, arguments); 
+    }
+    else {
+      callInWindow('obApi.queue.push', arguments);
+    }	    
+  }; 
+  api.version = '2.0-gtm';
   api.loaded = true;
-  api.marketerId = data.MarketerId;
-  setInWindow('obApi', api, true);
-  obTag = createArgumentsQueue('obTag', 'obApi.queue');
-  api('track', 'PAGE_VIEW');
+  api.marketerId = id.replace(' ','').split(',');
+  api.queue = [];
   injectScript(url, data.gtmOnSuccess, data.gtmOnFailure);
-} else {
-  callInWindow('obApi.addMarketer', data.MarketerId);
-}
+  return api; 
+};
+
+const getApi = () => {
+  let obApi  = copyFromWindow('obApi');
+  if(obApi) {
+    const arrId = id.replace(' ','').split(',');
+    const marketerIds = arrId.concat(obApi.marketerId);
+    obApi.marketerId = marketerIds;
+    setInWindow('obApi', obApi, true);
+  } else{
+    const api = initApi();
+    setInWindow('obApi', api);
+  }
+  return copyFromWindow('obApi');
+};
+
+const id = data.MarketerId; 
+const eventName = getEventName(); 
+const params = getCustomParameters();
+const url = 'https://amplify.outbrain.com/cp/obtp.js';
+const obApi = getApi();
+obApi('track', eventName, params);
 
 
 ___WEB_PERMISSIONS___
@@ -118,45 +419,6 @@ ___WEB_PERMISSIONS___
                   {
                     "type": 1,
                     "string": "obApi"
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  },
-                  {
-                    "type": 8,
-                    "boolean": false
-                  }
-                ]
-              },
-              {
-                "type": 3,
-                "mapKey": [
-                  {
-                    "type": 1,
-                    "string": "key"
-                  },
-                  {
-                    "type": 1,
-                    "string": "read"
-                  },
-                  {
-                    "type": 1,
-                    "string": "write"
-                  },
-                  {
-                    "type": 1,
-                    "string": "execute"
-                  }
-                ],
-                "mapValue": [
-                  {
-                    "type": 1,
-                    "string": "gtag"
                   },
                   {
                     "type": 8,
@@ -273,7 +535,163 @@ ___WEB_PERMISSIONS___
                 "mapValue": [
                   {
                     "type": 1,
-                    "string": "obApi.marketerId.push"
+                    "string": "obApi.dispatch"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "obApi.queue.push"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "obApi.addMarketer"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "obApi.dispatch.apply"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "obApi.marketerId"
                   },
                   {
                     "type": 8,
