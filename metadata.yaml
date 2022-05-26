@@ -5,7 +5,7 @@ versions:
   - sha: f8508e5e2a45fc7815d381d45a3f1e91a65a98a6
     changeNotes: change space to be optional
   # Older versions
-   - sha: 64f3e6c332b770885fcde12accb9f2998f7fab56
+  - sha: 64f3e6c332b770885fcde12accb9f2998f7fab56
     changeNotes: add new parameters and event type
   - sha: 3ec5ec308c5e2fce79bffb9226607b05e8f3f35d
     changeNotes: avoid split marketerId use pixel api for that 
