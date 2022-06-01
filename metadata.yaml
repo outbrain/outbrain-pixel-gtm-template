@@ -1,5 +1,5 @@
-homepage: "www.outbrain.com",
-documentation: "https://www.outbrain.com/help/advertisers/multiple-conversions/",
+homepage: "www.outbrain.com"
+documentation: "https://www.outbrain.com/help/advertisers/multiple-conversions/"
 versions:
   # Latest version
   - sha: f8508e5e2a45fc7815d381d45a3f1e91a65a98a6
