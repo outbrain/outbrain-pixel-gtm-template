@@ -5,6 +5,7 @@ Template Gallery Developer Terms of Service available at
 https://developers.google.com/tag-manager/gallery-tos (or such other URL as
 Google may provide), as modified from time to time.
 
+
 ___INFO___
 
 {
@@ -73,7 +74,7 @@ ___TEMPLATE_PARAMETERS___
     "displayName": "Event Name",
     "selectItems": [
       {
-        "value": "Custom",
+        "value": "custom",
         "displayValue": "Custom event"
       },
       {
@@ -135,7 +136,7 @@ ___TEMPLATE_PARAMETERS___
         "enablingConditions": [
           {
             "paramName": "EventName",
-            "paramValue": "Custom",
+            "paramValue": "custom",
             "type": "EQUALS"
           }
         ],
